@@ -7,6 +7,7 @@ end
 
 
 gem "coffee-rails", "~> 4.2"
+gem "config"
 gem "figaro"
 gem "jbuilder", "~> 2.5"
 gem "puma", "~> 3.7"
