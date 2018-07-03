@@ -1,1 +1,6 @@
 en:
+  menu:
+    home: "Home"
+    login: "Login"
+    registration: "Registration"
+
