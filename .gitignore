@@ -21,6 +21,9 @@ config/master.key
 
 # dotenv
 # TODO Comment out this rule if environment variables can be committed
+config/application.yml
+config/database.yml
+config/secrets.yml
 .env
 
 ## Environment normalization:
@@ -47,3 +50,6 @@ bower.json
 # Ignore node_modules
 node_modules/
 
+
+# Ignore application configuration
+/config/application.yml
