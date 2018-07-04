@@ -1,0 +1,18 @@
+<div class="login">
+  <div class="col-md-6 log">
+    <%= form_for resource, as: resource_name,
+      url: session_path(resource_name) do |f| %>
+      <h3 class="tittle"><%= t ".log_in" %></h3>
+      <p><%= t ".welcome" %></p>
+      <br>            
+      <h5><%= f.label :email %></h5>
+      <%= f.text_field :email, autofocus: true, autocomplete: "email" %>
+      
+      <h5><%= f.label :password %></h5>
+      <%= f.password_field :password, autocomplete: "off" %>
+      
+      <%= f.submit t(".log_in") %>
+    <% end %>
+  </div>
+  <div class="clearfix"></div>
+</div>

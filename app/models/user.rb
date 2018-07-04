@@ -1,9 +1,15 @@
 class User < ApplicationRecord
-  validates :name, presence: true, 
+
+  ATTRIBUTE_PARAMS = %i(email).freeze
+
+  devise :database_authenticatable, :registerable,
+         :rememberable, :validatable
+  
+  validates :name, presence: true,
     length: {maximum: Settings.name_maximum_length}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, 
-    length: {maximum: Settings.email_maximum_length}, 
+  validates :email, presence: true,
+    length: {maximum: Settings.email_maximum_length},
     format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false}
 
   has_many :posts, dependent: :destroy
