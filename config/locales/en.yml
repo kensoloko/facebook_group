@@ -1,6 +1,17 @@
 en:
-  menu:
-    home: "Home"
-    login: "Login"
-    registration: "Registration"
-
+  layouts:
+    top_menu:
+      home: "Home"
+      registration: "Registration"
+      login: "Login"
+      log_out: "Log out"
+    left_menu:
+      blogger: "Blogger"  
+    footer:
+      location: "Contact Us"
+      address: "2901 Glassgow Road, WA 98122-1090"
+      phone: "phone: (888) 123-456-7899"
+      fax: "fax: (888) 123-456-7890"
+      mess_us: "Message Us Now"
+      available_time: "Available 24/7"
+      email: "mail@example.com"
