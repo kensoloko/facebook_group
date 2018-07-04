@@ -9,6 +9,7 @@ end
 gem "coffee-rails", "~> 4.2"
 gem "config"
 gem "figaro"
+gem "font-awesome-rails", "~> 4.7", ">= 4.7.0.4"
 gem "jbuilder", "~> 2.5"
 gem "puma", "~> 3.7"
 gem "rails", "~> 5.1.6"
