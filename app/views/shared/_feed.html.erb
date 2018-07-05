@@ -1,0 +1,8 @@
+<% if @items.any? %>
+  <ol>
+    <%= render @items %>
+  </ol>
+  <div class="text-center">
+    <%= paginate @items, theme: "twitter-bootstrap-3" %>
+  </div>
+<% end %>

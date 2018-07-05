@@ -5782,4 +5782,25 @@ button.close {
     display: none !important;
   }
 }
+form#new_post {
+  margin: 30px 40px 10px;
+}
+textarea#post_content {
+  width: 50%;
+}
+.well {
+  width: 70%;
+}
+
+.alert.alert-danger {
+  width: 73%;
+}
+
+.alert.alert-success {
+  width: 73%;
+}
+
+input.btn.btn-primary {
+  margin-top: 5px;
+}
 /*# sourceMappingURL=bootstrap.css.map */

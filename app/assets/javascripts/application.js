@@ -23,6 +23,8 @@
 //= require owl.carousel.min
 //= require cable
 //= require custom
+//= require jquery
+//= require jquery_ujs
 //= require_self
 //= require_tree
 

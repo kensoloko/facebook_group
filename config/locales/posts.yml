@@ -1,0 +1,10 @@
+en:
+  messages:
+    created_post: "Post created"
+    created_post_fail: "Create post fail"
+    not_found: "Post not found"
+  posts:
+    post:
+      comments: "Comments"
+      by: "By"
+      
