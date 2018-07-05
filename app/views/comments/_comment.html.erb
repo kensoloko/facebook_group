@@ -1,0 +1,15 @@
+<div class="media comment-post">
+  <div class="media response-info">
+    <div class="media-left response-text-left">
+      <%= link_to "#" do %>
+        <%= image_tag ("sin1.jpg"), class: "media-object", alt: "" %>
+      <% end %>
+      <h5><%= comment.user.name %></h5>
+    </div>
+    <div class="media-body response-text-right">
+      <p>
+        <%= comment.content %>
+      </p>
+    </div>
+  </div>
+</div>
