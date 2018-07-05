@@ -6,7 +6,8 @@ en:
       login: "Login"
       log_out: "Log out"
     left_menu:
-      blogger: "Blogger"  
+      blogger: "Blogger"
+      home: "Home"
     footer:
       location: "Contact Us"
       address: "2901 Glassgow Road, WA 98122-1090"
@@ -15,3 +16,7 @@ en:
       mess_us: "Message Us Now"
       available_time: "Available 24/7"
       email: "mail@example.com"
+      address_sub: "Address"
+      street: "43 - Nguyen Chi Thanh"
+      province: "Dong Da, Ha noi, Viet Nam"
+
