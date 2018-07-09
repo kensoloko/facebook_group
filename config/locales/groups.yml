@@ -1,13 +1,14 @@
 en:
-  group:
-    messages:
-      not_found: "Group not found with id: %{id}"
-      created_group: "Created group"
-      create_group_fail: "Create group fail"
-    groups:
-      index:
-        all_groups: "All Groups"
-        create_group: "Create group"
-      form:
-        new_group: "New Group"
-        close: "Close"
+  messages:
+    not_found: "Group not found with id: %{id}"
+    created_group: "Created group"
+    create_group_fail: "Create group fail"
+  groups:
+    index:
+      all_groups: "All Groups"
+      create_group: "Create group"
+    form:
+      new_group: "New Group"
+      close: "Close"
+    group:
+      sure: "Are you sure? "

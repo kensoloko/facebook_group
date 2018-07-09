@@ -2,7 +2,7 @@ en:
   messages:
     created_post: "Post created"
     created_post_fail: "Create post fail"
-    not_found: "Post not found"
+    not_found: "Post not found with id: %{id}"
     deleted_post: "Post deleted"
     delete_post_fail: "Can't delete post"
   posts:

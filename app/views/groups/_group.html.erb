@@ -1,11 +1,21 @@
-<div class="container-fluid">
-  <div class="row mm-top">
-    <div class="col-sm-4 ">
-      <ul class="list-group">
-        <li class="list-group-item active">
-          <%= link_to group.name, group_path(group) %>
-        </li>
-      </ul>
+<div id="<%= "group-#{group.id}" %>">
+  <div class="container-fluid">
+    <div class="row mm-top">
+      <div class="col-sm-4 ">
+        <ul class="list-group">
+          <li class="list-group-item active">
+            <%= link_to group.name, group_path(group) %>
+            <div class="pull-right">
+              <% if signed_in? && current_user.id == group.creator_id %>
+                <%= link_to group, method: :delete,
+                  data: {confirm: t(".sure")}, remote: true do %>
+                  <span class="glyphicon glyphicon-remove"></span>
+                  <% end %>
+              <% end %>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
