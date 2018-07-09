@@ -3,8 +3,11 @@ en:
     created_post: "Post created"
     created_post_fail: "Create post fail"
     not_found: "Post not found"
+    deleted_post: "Post deleted"
+    delete_post_fail: "Can't delete post"
   posts:
     post:
       comments: "Comments"
       by: "By"
-      
+      sure: "You sure?"
+      delete: "Delete"

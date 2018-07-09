@@ -1,18 +1,25 @@
-<div class="well">
-  <div class="media">
-    <div class="media-body">
-      <h4 class="media-heading"></h4>
-        <p><%= post.content %></p>
-        <br>
-        <ul class="list-inline list-unstyled">
-          <li><span><i class="fa fa-clock-o"></i>
-            <%= time_ago_in_words(post.created_at) %></span>
-          </li>
-          <li>|</li>
-          <span><i class="fa fa-comment"></i> <%= t ".comments" %>
-            <%= post.comments.size %></span>
-          <p class="text-right"> <%= t ".by" %> <%= post.user.name  %></p>
-        </ul>
+<div id="<%= "post-#{post.id}" %>">
+  <div class="well">
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"></h4>
+          <p><%= post.content %></p>
+          <br>
+          <ul class="list-inline list-unstyled">
+            <li><span><i class="fa fa-clock-o"></i>
+              <%= time_ago_in_words post.created_at %></span>
+            </li>
+            <li>|</li>
+            <span><i class="fa fa-comment"></i> <%= t ".comments" %>
+              <%= post.comments.size %></span>
+            <% if current_user == post.user %>
+              <li>|</li>
+              <%= link_to t(".delete"), post, method: :delete,
+                data: {confirm: t(".sure")}, remote: true %>
+            <% end %>
+            <p class="text-right"> <%= t ".by" %> <%= post.user.name  %></p>
+          </ul>
+      </div>
     </div>
   </div>
 </div>
