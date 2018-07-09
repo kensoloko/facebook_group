@@ -1,6 +1,6 @@
 <div id="<%= "post-#{post.id}" %>">
   <div class="well">
-    <div class="media">
+    <div class="media comment-post">
       <div class="media-body">
         <h4 class="media-heading"></h4>
           <p><%= post.content %></p>
@@ -10,8 +10,10 @@
               <%= time_ago_in_words post.created_at %></span>
             </li>
             <li>|</li>
-            <span><i class="fa fa-comment"></i> <%= t ".comments" %>
-              <%= post.comments.size %></span>
+            <span><i class="fa fa-comment"></i>
+              <%= t ".comments" %>
+              <span class= "count_comment"><%= post.comments.size %></span>
+            </span>
             <% if current_user == post.user %>
               <li>|</li>
               <%= link_to t(".delete"), post, method: :delete,
@@ -21,9 +23,25 @@
           </ul>
       </div>
     </div>
-    <h4 class="comment-post"><%= t "response" %></h4>
-    <% if post.comments.any? %>
-      <%= render partial: "comments/comment", collection: post.comments %>
+
+    <div class="media comment-post">
+    <h4 class="comment-post"><%= t ".response" %></h4>
+    <div class="post_comments">
+      <% if post.comments.any? %>
+        <%= render partial: "comments/comment", collection: post.comments %>
+      <% end %>
+    </div>
+    <% if signed_in? %>
+      <div class="media-left response-text-left comment-post">
+      <%= link_to "#" do %>
+        <%= image_tag ("sin1.jpg"), class: "media-object", alt: "img" %>
+      <% end %>
+      <h5><%= current_user.name %></h5>
+      </div>
+      <div class="media-body response-text-right comment-post">
+        <%= render "comments/form", new_comment: new_comment, post: post %>
+      </div>
     <% end %>
+    </div>
   </div>
 </div>

@@ -1,10 +1,11 @@
 <div class="container row fluid">
   <h3 class="tittle profile-name">
-    <%= current_user.name%>
+    <%= current_user.name %>
     <i class="fa fa-profile"></i>
   </h3>
 </div>
-<%= render @current_user_posts, posts: @current_user_posts %>
+
+<%= render @current_user_posts, new_comment: @comment, posts: @current_user_posts %>
 <div class="text-center">
   <%= paginate @current_user_posts %>
 </div>

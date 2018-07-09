@@ -35,7 +35,7 @@ class PostsController < ApplicationController
     @post = Post.find_by id: params[:id]
 
     return if post
-    flash[:danger] = t "messages.not_found", id: params[:id]
+    flash[:danger] = t "messages.not_found" + params[:id]
     redirect_to root_url
   end
 end

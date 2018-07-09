@@ -1,13 +1,15 @@
 class StaticPagesController < ApplicationController
+  before_action :load_view_support, only: %i(home)
 
   def home
-    if signed_in?
-      @post = current_user.posts.build
-      @items = Post.all.order_by_time.includes(:user, :comments).page(params[:page]).
-        per(Settings.post_per_page)
-    else
-      @items = Post.all.order_by_time.includes(:user, :comments).page(params[:page]).
-        per(Settings.post_per_page)
-    end
+    @items = support.show_all_posts.page(params[:page]).per(Settings.post_per_page)
+  end
+
+  private
+
+  attr_reader :support
+
+  def load_view_support
+    @support = Supports::ViewSupport.new current_user: current_user
   end
 end
