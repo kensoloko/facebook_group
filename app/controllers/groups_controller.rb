@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :load_group, only: %i(show destroy)
+  before_action :load_group, only: %i(show destroy edit update)
 
   def index
     @groups = Group.includes(:posts, :users).order_by_time.page(params[:page]).
@@ -24,6 +24,17 @@ class GroupsController < ApplicationController
   end
 
   def show; end
+
+  def edit; end
+
+  def update
+    if group.update_attributes group_params
+      flash[:sucess] = t "messages.update_group"
+    else
+      flash[:danger] = t "messages.update_group_fail"
+    end
+    redirect_to groups_path
+  end
 
   def destroy
     if group.destroy
