@@ -5,6 +5,7 @@ en:
       registration: "Registration"
       login: "Login"
       log_out: "Log out"
+      my_profile: "My profile"
     left_menu:
       blogger: "Blogger"
       home: "Home"
@@ -22,4 +23,8 @@ en:
   shared:
     post_form:
       new_post: "What's do you think? "
-      post: "Post"    
+      post: "Post"
+  posts:
+    post:
+      comments: "Comments"
+      by: "By"

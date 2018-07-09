@@ -7,11 +7,11 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for resource
     if current_user
       root_path
-    end	
+    end
   end
 
   def configure_permitted_parameters
     attributes = [:name, :email]
-    devise_parameter_sanitizer.permit(:sign_up, keys: attributes)
+    devise_parameter_sanitizer.permit :sign_up, keys: attributes
   end
 end

@@ -12,3 +12,8 @@
     color: $state-danger-text;
   }
 }
+
+.profile-name {
+  margin-top: 20px;
+  margin-left: 20px;
+}
