@@ -1,0 +1,3 @@
+$('#<%= "post-#{@comment.post_id}" %> .post_comments').append("<%= j render @comment %>");
+$('#comment_content').val('');
+$('#<%= "post-#{@comment.post_id}" %> .count_comment').html("<%= @post.comments.size %>");
