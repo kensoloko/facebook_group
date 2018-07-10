@@ -1,1 +1,10 @@
-<%= @group.name %>
+<h1 class="text-center" ><%= @group.name %></h1>
+<h3><%= t ".total_user" %><%= @group.users.count %></h3>
+<% if current_user.id != @group.creator_id %>
+  <div class="pull-left">
+    <%= form_for :user_group, url: user_groups_path do |f| %>
+      <%= f.hidden_field :group_id, value: params[:id] %>
+      <%= f.submit t(".join"), class: "btn btn-primary" %>
+    <% end %>
+  </div>
+<% end %>

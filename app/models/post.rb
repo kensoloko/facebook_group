@@ -1,4 +1,6 @@
 class Post < ApplicationRecord
+  ATTRIBUTE_PARAMS = %i(content).freeze
+
   belongs_to :user
   belongs_to :group, optional: true
 
