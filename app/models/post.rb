@@ -7,6 +7,8 @@ class Post < ApplicationRecord
   validates :content, presence: true
 
   scope :order_by_time, ->{order created_at: :desc}
-  scope :user_profile_posts, lambda {|current_user_id|
-    joins(:user).where(group_id: nil, users: {id: current_user_id})}
+  scope :user_profile_posts, (lambda do |current_user_id|
+    joins(:user).where(group_id: nil, users: {id: current_user_id})
+    .order created_at: :desc
+  end)
 end
