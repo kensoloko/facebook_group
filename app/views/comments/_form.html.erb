@@ -1,6 +1,11 @@
-<%= form_for new_comment, class: "comment-post", remote: true do |f| %>
-  <%= f.hidden_field :user_id, value: current_user.id %>
-  <%= f.hidden_field :post_id, value: post.id %>
-  <p><%= f.text_area :content, cols: 63, rows: 3, require: "true" %></p>
-  <p><%= f.submit t(".comment"), class: "btn btn-primary"%></p>
+<% if signed_in? %>
+  <%= form_for new_comment, class: "comment-post", remote: true do |f| %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :post_id, value: post.id %>
+    <%= f.hidden_field :parent_id, value: parent_id %>
+    <p>
+      <%= f.text_area :content, class: "comment_content", cols: 60, rows: 3, require: "true" %>
+    </p>
+    <p><%= f.submit t(".comment"), class: "btn btn-primary"%></p>
+  <% end %>
 <% end %>

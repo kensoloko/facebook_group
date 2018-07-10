@@ -13,6 +13,9 @@ class Post < ApplicationRecord
     joins(:user).where(group_id: nil, users: {id: current_user_id})
       .order created_at: :desc
   end)
-
   scope :not_in_group, ->{where group_id: nil}
+
+  def find_comments_root_post
+    comments.where(parent_id: nil).order created_at: :desc
+  end
 end

@@ -1,0 +1,21 @@
+<% unless subcomment.new_record? %>
+  <div class="row subcomment">
+    <div class="col-md-2">
+      <%= image_tag ("sin1.jpg"), class: "media-object", alt: "img" %>
+    </div>
+    <div class="col-md-10">
+      <span class="timestamp">
+        <%= subcomment.user.name %>
+      </span><br/>
+      <p><%= subcomment.content %><p>
+      <nr>
+      <p class="text-right"><%= time_ago_in_words subcomment.created_at %></p>
+      <p>
+        <span>
+        <%= link_to t(".reply"), "#", class: "comment-form-reply",
+          data: {id_cm: subcomment.parent_id} %>
+        </span>
+      </p>
+    </div>
+  </div>
+<% end %>
