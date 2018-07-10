@@ -5803,4 +5803,10 @@ textarea#post_content {
 input.btn.btn-primary {
   margin-top: 5px;
 }
+
+a.btn.btn-primary {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 15px;
+}
 /*# sourceMappingURL=bootstrap.css.map */
