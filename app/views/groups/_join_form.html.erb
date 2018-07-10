@@ -1,0 +1,10 @@
+<div id="join-form">
+  <% if current_user.join? @group ||
+    current_user.id != @group.creator_id %>
+    <%= render "leave_group", leave_group: @leave_group %>
+  <% else %>
+    <div class="pull-left">
+      <%= render "join_group" %>
+    </div>
+  <% end %>
+</div>

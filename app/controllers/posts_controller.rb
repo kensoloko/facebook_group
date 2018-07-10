@@ -28,7 +28,7 @@ class PostsController < ApplicationController
   attr_reader :post
 
   def post_params
-    params.require(:post).permit :content
+    params.require(:post).permit Post::ATTRIBUTE_PARAMS
   end
 
   def load_post

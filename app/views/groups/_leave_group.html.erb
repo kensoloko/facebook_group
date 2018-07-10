@@ -1,0 +1,4 @@
+<%= form_for leave_group, html: {method: :delete}, remote: true do |f| %>
+  <%= f.hidden_field :group_id, value: params[:id] %>
+  <%= f.submit t(".leave"), class: "btn btn-primary" %>
+<% end %>

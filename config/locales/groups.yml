@@ -16,3 +16,10 @@ en:
       update_group: "Update"
     group:
       sure: "Are you sure? "
+    show:
+      total_user: "Total User "
+    join_group:
+      join: "Join Group"
+    leave_group:
+      leave: "Leave Group"
+
