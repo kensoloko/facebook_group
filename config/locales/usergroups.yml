@@ -1,0 +1,4 @@
+en:
+  messages:
+    join_group: "You've join this group"
+    join_group_fail: "Can't join this group"

@@ -16,3 +16,6 @@ en:
       update_group: "Update"
     group:
       sure: "Are you sure? "
+    show:
+      join: "Join Group"
+      total_user: "Total User "

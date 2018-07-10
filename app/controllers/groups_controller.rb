@@ -15,6 +15,7 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new group_params
+    group.users << current_user
     if group.save
       flash[:sucesss] = t "messages.created_group"
     else
@@ -50,7 +51,7 @@ class GroupsController < ApplicationController
   attr_reader :group
 
   def group_params
-    params.require(:group).permit :name, :creator_id
+    params.require(:group).permit Group::ATTRIBUTE_PARAMS
   end
 
   def load_group
