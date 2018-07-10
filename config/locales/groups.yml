@@ -3,6 +3,9 @@ en:
     not_found: "Group not found with id: %{id}"
     created_group: "Created group"
     create_group_fail: "Create group fail"
+
+    update_group: "Updated group"
+    update_group_fail: "Can't update group"
   groups:
     index:
       all_groups: "All Groups"
@@ -10,5 +13,6 @@ en:
     form:
       new_group: "New Group"
       close: "Close"
+      update_group: "Update"
     group:
       sure: "Are you sure? "
