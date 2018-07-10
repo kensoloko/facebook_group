@@ -25,8 +25,3 @@ en:
     post_form:
       new_post: "What's do you think? "
       post: "Post"
-  posts:
-    post:
-      comments: "Comments"
-      by: "By"
-      response: "Response"

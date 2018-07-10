@@ -1,7 +1,9 @@
 <h2 class="text-center"><%= t ".all_groups" %> <br></h2>
-<%= link_to new_group_path, remote: true, class: "btn btn-primary" do %>
-  <span class="glyphicon glyphicon-plus-sign"></span>
-  <%= t ".create_group" %>
+<% if signed_in? %>
+  <%= link_to new_group_path, remote: true, class: "btn btn-primary" do %>
+    <span class="glyphicon glyphicon-plus-sign"></span>
+    <%= t ".create_group" %>
+  <% end %>
 <% end %>
 <div id="myModal"></div>
 <% if @groups.any? %>
