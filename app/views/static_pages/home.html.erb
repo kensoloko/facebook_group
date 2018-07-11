@@ -1,3 +1,4 @@
+<h1 class="text-center" ><%= t ".home_page" %></h1>
 <% if signed_in? %>
   <%= render "shared/post_form", new_post: @support.current_user_posts_build %>
 <% end %>

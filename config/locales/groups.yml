@@ -22,4 +22,7 @@ en:
       join: "Join Group"
     leave_group:
       leave: "Leave Group"
-
+    post:
+      delete: "Delete"
+      by: "By"
+      comments: "Commnets"

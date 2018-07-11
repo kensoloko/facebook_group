@@ -1,3 +1,10 @@
-<h1 class="text-center" ><%= @group.name %></h1>
-<%= render "join_form" %>
-
+<h1 class="text-center" ><%= @group.name %><%= render "join_form" %></h1>
+<% if current_user.join? @group %>
+  <%= render "shared/post_form", new_post: @support.current_user_posts_build %>
+<% end %>
+<ol>
+  <%= render "post", posts: @posts, new_comment: @support.init_comment %>
+</ol>
+<div class="text-center">
+  <%= paginate @posts, theme: "twitter-bootstrap-3" %>
+</div>

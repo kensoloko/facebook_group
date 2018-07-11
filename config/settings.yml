@@ -1,4 +1,4 @@
 name_maximum_length: 50
 email_maximum_length: 250
-post_per_page: 8
+post_per_page: 5
 group_per_page: 6

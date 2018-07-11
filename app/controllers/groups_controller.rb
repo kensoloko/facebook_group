@@ -1,9 +1,10 @@
 class GroupsController < ApplicationController
   before_action :load_group, only: %i(show destroy edit update)
+  before_action :load_view_support, only: %i(show)
 
   def index
     @groups = Group.includes(:posts, :users).order_by_time.page(params[:page]).
-      per(Settings.group_per_page)
+      per Settings.group_per_page
   end
 
   def new
@@ -26,6 +27,8 @@ class GroupsController < ApplicationController
 
   def show
     @leave_group = current_user.user_groups.find_by group_id: @group.id
+    @posts = @group.order_post_by_time.includes(:user, :comments).
+      page(params[:page]).per Settings.post_per_page
   end
 
   def edit; end
@@ -54,6 +57,10 @@ class GroupsController < ApplicationController
 
   def group_params
     params.require(:group).permit Group::ATTRIBUTE_PARAMS
+  end
+
+  def load_view_support
+    @support = Supports::ViewSupport.new current_user: current_user
   end
 
   def load_group

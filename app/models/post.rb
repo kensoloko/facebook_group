@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  ATTRIBUTE_PARAMS = %i(content).freeze
+  ATTRIBUTE_PARAMS = %i(content group_id).freeze
 
   belongs_to :user
   belongs_to :group, optional: true
@@ -11,6 +11,8 @@ class Post < ApplicationRecord
   scope :order_by_time, ->{order created_at: :desc}
   scope :user_profile_posts, (lambda do |current_user_id|
     joins(:user).where(group_id: nil, users: {id: current_user_id})
-    .order created_at: :desc
+      .order created_at: :desc
   end)
+
+  scope :not_in_group, ->{where group_id: nil}
 end
