@@ -14,11 +14,18 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :user_groups
+  has_many :user_groups, dependent: :destroy
   has_many :groups, through: :user_groups
 
   before_save :downcase_email
 
+  def join? group
+    groups.include? group
+  end
+
+  def leave group
+    user_groups.delete group
+  end
   private
 
   def downcase_email

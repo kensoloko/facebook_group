@@ -24,7 +24,9 @@ class GroupsController < ApplicationController
     redirect_to groups_path
   end
 
-  def show; end
+  def show
+    @leave_group = current_user.user_groups.find_by group_id: @group.id
+  end
 
   def edit; end
 
