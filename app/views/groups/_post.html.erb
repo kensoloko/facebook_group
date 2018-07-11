@@ -1,51 +1,53 @@
 <% posts.each do |post| %>
-  <div class="well">
-    <div class="to-group">
-      <%= post.user.name %><i class="glyphicon glyphicon-play"></i>
-        <%= link_to @group.name, @group %>
-    </div>
-    <div class="media comment-post">
-      <div class="media-body">
-        <h4 class="media-heading"></h4>
-          <p><%= post.content %></p>
-          <br>
-          <ul class="list-inline list-unstyled">
-            <li><span><i class="fa fa-clock-o"></i>
-              <%= time_ago_in_words post.created_at %></span>
-            </li>
-            <li>|</li>
-            <span><i class="fa fa-comment"></i>
-              <%= t ".comments" %>
-              <span class= "count_comment"><%= post.comments.size %></span>
-            </span>
-            <% if current_user == post.user %>
+  <div id="<%= "post-#{post.id}" %>">
+    <div class="well">
+      <div class="to-group">
+        <%= post.user.name %><i class="glyphicon glyphicon-play"></i>
+        <%= link_to group.name, group %>
+      </div>
+      <div class="media comment-post">
+        <div class="media-body">
+          <h4 class="media-heading"></h4>
+            <p><%= post.content %></p>
+            <br>
+            <ul class="list-inline list-unstyled">
+              <li><span><i class="fa fa-clock-o"></i>
+                <%= time_ago_in_words post.created_at %></span>
+              </li>
               <li>|</li>
-              <%= link_to t(".delete"), post, method: :delete,
-                data: {confirm: t(".sure")}, remote: true %>
-            <% end %>
-            <p class="text-right"> <%= t ".by" %> <%= post.user.name %></p>
-          </ul>
+              <span><i class="fa fa-comment"></i>
+                <%= t ".comments" %>
+                <span class= "count_comment"><%= post.comments.size %></span>
+              </span>
+              <% if post.belong_to? current_user %>
+                <li>|</li>
+                <%= link_to t(".delete"), post, method: :delete,
+                  data: {confirm: t(".sure")}, remote: true %>
+              <% end %>
+              <p class="text-right"> <%= t ".by" %> <%= post.user.name %></p>
+            </ul>
+        </div>
       </div>
-    </div>
 
-    <div class="media comment-post">
-    <h4 class="comment-post"><%= t ".response" %></h4>
-    <div class="post_comments">
-      <% if post.comments.any? %>
-        <%= render partial: "comments/comment", collection: post.comments %>
-      <% end %>
-    </div>
-    <% if signed_in? %>
-      <div class="media-left response-text-left comment-post">
-      <%= link_to "#" do %>
-        <%= image_tag ("sin1.jpg"), class: "media-object", alt: "img" %>
-      <% end %>
-      <h5><%= current_user.name %></h5>
+      <div class="media comment-post">
+      <h4 class="comment-post"><%= t ".response" %></h4>
+      <div class="post_comments">
+        <% if post.comments.any? %>
+          <%= render partial: "comments/comment", collection: post.comments %>
+        <% end %>
       </div>
-      <div class="media-body response-text-right comment-post">
-        <%= render "comments/form", new_comment: new_comment, post: post %>
+      <% if signed_in? %>
+        <div class="media-left response-text-left comment-post">
+        <%= link_to "#" do %>
+          <%= image_tag ("sin1.jpg"), class: "media-object", alt: "img" %>
+        <% end %>
+        <h5><%= current_user.name %></h5>
+        </div>
+        <div class="media-body response-text-right comment-post">
+          <%= render "comments/form", new_comment: new_comment, post: post %>
+        </div>
+      <% end %>
       </div>
-    <% end %>
     </div>
   </div>
 <% end %>

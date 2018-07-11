@@ -26,6 +26,11 @@ class User < ApplicationRecord
   def leave group
     user_groups.delete group
   end
+
+  def is_group_creator? group
+    self.id != group.creator_id
+  end
+
   private
 
   def downcase_email
