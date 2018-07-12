@@ -1,8 +1,8 @@
 <div class="sign-up-form">
-  <h3 class="tittle"><%= t ".registration" %>
+  <h1 class="tittle"><%= t ".registration" %>
     <i class="fa fa-registered"></i>
-  </h3>
-    <%= form_for resource, as: resource_name, 
+  </h1>
+    <%= form_for resource, as: resource_name,
       url: registration_path(resource_name) do |f| %>
       <%= devise_error_messages! %>
   <div class="sign-up">
@@ -23,15 +23,15 @@
     </div>
 
     <div class="sign-u">
-      
+
       <div class="sign-up1">
-        <%= f.label :name %>            
+        <%= f.label :name %>
       </div>
 
       <div class="field">
         <%= f.text_field :name, autofocus: true, autocomplete: "off" %>
       </div>
-      
+
       <div class="clearfix"> </div>
       <br/>
     </div>
@@ -49,9 +49,9 @@
       </div>
       <div class="clearfix"> </div>
       <br/>
-    
+
     </div>
-    
+
     <div class="sign-u">
       <div class="sign-up1">
         <%= f.label :password_confirmation %><br />

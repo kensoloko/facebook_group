@@ -2,18 +2,19 @@
 <div class="media response-info">
   <div class="media-left response-text-left">
     <%= link_to "#" do %>
-      <%= image_tag ("sin1.jpg"), class: "media-object", alt: "" %>
+      <%= gravatar_for comment.user %>
     <% end %>
     <h5><%= comment.user.name %></h5>
   </div>
+
   <div class="media-body response-text-right">
     <p class="content-<%= "comment-#{comment.id}" %>"><%= comment.content %></p>
     <p>
       <% if signed_in? %>
-      <span>
-        <%= link_to t(".reply"), "#", class: "comment-form-reply",
-          data: {id_cm: comment.id} %>
-      </span>|
+        <span>
+          <%= link_to t(".reply"), "#", class: "comment-form-reply",
+            data: {id_cm: comment.id} %>
+        </span>|
       <% end %>
 
       <% if signed_in? && comment.belong_to?(current_user) %>
@@ -27,9 +28,7 @@
     </p>
   </div>
 </div>
-<!-- Root Comment-->
 
-<!-- Sub Comment -->
 <div class="media response-info">
   <div class="subcomment-<%= "comment-#{comment.id}" %>">
     <% if comment.children.present? %>

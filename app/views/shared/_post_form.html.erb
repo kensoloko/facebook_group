@@ -1,8 +1,9 @@
 <%= form_for new_post do |f| %>
   <%= render "shared/error_messages", object: f.object %>
-  <h3><%= current_user.name %></h3>
+  <h3><%= gravatar_for current_user %> <%= current_user.name %></h3> <br>
     <%= f.text_area :content, placeholder: t(".new_post") + current_user.name,
       class: "form-control" %>
     <%= f.hidden_field :group_id, value: params[:id] %>
   <%= f.submit t(".post"), class: "btn btn-primary" %>
+  <%= f.file_field :picture, accept: "image/jpeg,image/gif,image/png" %>
 <% end %>

@@ -56,3 +56,14 @@ h1 {
 .col-md-3.top-nav {
   position: fixed;
 }
+
+img.post-image {
+  height: 300px;
+  width: 500px;
+}
+
+img.image {
+  height: 315px;
+  width: 80%;
+  margin: 10px 122px;
+}

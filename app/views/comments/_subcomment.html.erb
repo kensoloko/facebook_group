@@ -1,7 +1,7 @@
 <% unless subcomment.new_record? %>
   <div class="row subcomment">
     <div class="col-md-2">
-      <%= image_tag ("sin1.jpg"), class: "media-object", alt: "img" %>
+      <%= gravatar_for subcomment.user %>
     </div>
     <div class="col-md-10">
       <span class="timestamp">

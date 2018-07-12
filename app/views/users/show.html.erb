@@ -1,6 +1,7 @@
 <h1 class="text-center" ><%= t ".Home" %></h1>
 <div class="container fluid">
   <h3 class="tittle profile-name">
+    <%= gravatar_for current_user %>
     <%= current_user.name %>
     <i class="fa fa-profile"></i>
   </h3>
