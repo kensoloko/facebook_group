@@ -8,4 +8,8 @@ class Group < ApplicationRecord
   validates :name, presence: true
 
   scope :order_by_time, -> {order created_at: :desc}
+
+  def order_post_by_time
+    posts.order_by_time
+  end
 end

@@ -14,6 +14,6 @@ class Supports::ViewSupport
   end
 
   def show_all_posts
-    Post.all.order_by_time.includes(:user, :comments)
+    Post.all.order_by_time.not_in_group.includes :user, :comments
   end
 end

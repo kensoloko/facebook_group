@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :load_post, only: %i(show destroy)
+  before_action :load_group, only: %i(create)
 
   def create
     @post = current_user.posts.build post_params
@@ -9,7 +10,12 @@ class PostsController < ApplicationController
     else
       flash[:danger] = t "messages.created_post_fail"
     end
+
+    if params[:post][:group_id].present?
+      redirect_to group
+    else
       redirect_to root_url
+    end
   end
 
   def show; end
@@ -25,10 +31,14 @@ class PostsController < ApplicationController
 
   private
 
-  attr_reader :post
+  attr_reader :post, :group
 
   def post_params
     params.require(:post).permit Post::ATTRIBUTE_PARAMS
+  end
+
+  def load_group
+    @group = Group.find_by id: params[:post][:group_id]
   end
 
   def load_post
@@ -36,6 +46,6 @@ class PostsController < ApplicationController
 
     return if post
     flash[:danger] = t "messages.not_found" + params[:id]
-    redirect_to root_url
+    redirect_to root_path
   end
 end
