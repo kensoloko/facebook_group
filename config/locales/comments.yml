@@ -4,10 +4,12 @@ en:
       not_found: "Comment not found"
       create_failed: "Create Comment failed"
       update_failed: "Update Comment failed"
+      delete_failed: "Delete Comment failed"
     form:
       comment: "Comment"
     comment:
       reply: "Reply"
       edit: "Edit"
+      delete: "Delete"
     subcomment:
       reply: "Reply"

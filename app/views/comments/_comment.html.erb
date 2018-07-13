@@ -1,5 +1,5 @@
 <!-- Root Comment-->
-<div class="media response-info">
+<div class="media response-info div-comment-<%= "comment-#{comment.id}" %> ">
   <div class="media-left response-text-left">
     <%= link_to "#" do %>
       <%= gravatar_for comment.user %>
@@ -24,11 +24,20 @@
       </span>|
       <% end %>
 
+      <% if signed_in? && (comment.belong_to?(current_user) || current_user.is_post_owner?(comment))%>
+      <span>|
+        <%= link_to t(".delete"), comment_path(comment), method: "delete", remote: true,
+          class: "comment-form-delete" %>
+      </span>|
+      <% end %>
+
       <span><%= time_ago_in_words comment.created_at %></span>
     </p>
   </div>
 </div>
+<!-- Root Comment-->
 
+<!-- Sub Comment -->
 <div class="media response-info">
   <div class="subcomment-<%= "comment-#{comment.id}" %>">
     <% if comment.children.present? %>
