@@ -19,8 +19,24 @@
 }
 
 .comment-post {
-  margin-top: 15px;
-  padding-top: 15px;
+  padding: 10px;
+}
+
+.reply-time {
+  margin-left: 400px;
+}
+
+.comment-children {
+  margin-left: 10px;
+}
+
+.form-initial-load {
+  display: none;
+}
+
+.subcomment {
+  margin-left: 70px;
+  padding: 10px;
 }
 
 .to-group {

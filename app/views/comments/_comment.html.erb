@@ -1,15 +1,47 @@
-<div class="media comment-post">
-  <div class="media response-info">
-    <div class="media-left response-text-left">
-      <%= link_to "#" do %>
-        <%= image_tag ("sin1.jpg"), class: "media-object", alt: "" %>
-      <% end %>
-      <h5><%= comment.user.name %></h5>
-    </div>
-    <div class="media-body response-text-right">
-      <p>
-        <%= comment.content %>
-      </p>
-    </div>
+<div class="media response-info">
+  <!-- Root Comment-->
+  <div class="media-left response-text-left">
+    <%= link_to "#" do %>
+      <%= image_tag ("sin1.jpg"), class: "media-object", alt: "" %>
+    <% end %>
+    <h5><%= comment.user.name %></h5>
   </div>
+  <div class="media-body response-text-right">
+    <p><%= comment.content %></p>
+    <p>
+      <% if signed_in? %>
+      <span>
+        <%= link_to t(".reply"), "#", class: "comment-form-reply",
+          data: {id_cm: comment.id} %>
+      </span>|
+      <% end %>
+      <span><%= time_ago_in_words comment.created_at %></span>
+    </p>
+  </div>
+</div>
+<div class="media response-info">
+  <!-- Sub Comment -->
+  <div class="subcomment-<%= "comment-#{comment.id}" %>">
+    <% if comment.children.present? %>
+      <%= render partial: "comments/subcomment", collection: comment.children %>
+    <% end %>
+  </div>
+  <!-- Sub Comment -->
+</div>
+<div class="media response-info">
+  <!-- form -->
+  <% if signed_in? %>
+    <div class="form-initial-load comment-form-<%= "#{comment.id}"%>">
+      <div class="media-body response-text-right comment-post">
+        <% if comment.root? %>
+          <%= render "comments/form", new_comment: comment.children.build,
+            parent_id: comment.id, post: comment.post %>
+        <% else %>
+          <%= render "comments/form", new_comment: comment.root.children.build,
+            parent_id: comment.parent_id, post: comment.post %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+  <!--form  -->
 </div>

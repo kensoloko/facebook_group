@@ -1,6 +1,7 @@
 class Comment < ApplicationRecord
+  acts_as_tree order: "created_at ASC"
 
-  ATTRIBUTE_PARAMS = %i(user_id post_id content).freeze
+  ATTRIBUTE_PARAMS = %i(user_id post_id parent_id content).freeze
 
   belongs_to :user
   belongs_to :post

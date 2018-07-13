@@ -1,4 +1,10 @@
 en:
   comments:
+    messages:
+      not_found: "Comment not found"
     form:
       comment: "Comment"
+    comment:
+      reply: "Reply"
+    subcomment:
+      reply: "Reply"

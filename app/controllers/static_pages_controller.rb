@@ -12,4 +12,8 @@ class StaticPagesController < ApplicationController
   def load_view_support
     @support = Supports::ViewSupport.new current_user: current_user
   end
+
+  def comment_params
+    params.require(:comment).permit Comment::ATTRIBUTE_PARAMS
+  end
 end

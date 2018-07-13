@@ -1,3 +1,11 @@
-$('#<%= "post-#{@comment.post_id}" %> .post_comments').append("<%= j render @comment %>");
-$('#comment_content').val('');
-$('#<%= "post-#{@comment.post_id}" %> .count_comment').html("<%= @post.comments.size %>");
+var comment_field = '<%= j render @comment, new_comment: @comment.children.build, post: @comment.post %>';
+var subcomment_field = '<%= j render(:partial => "comments/subcomment", :locals => {subcomment: @comment, new_comment: @comment.children.build, post: @comment.post}) %>';
+<% if @comment.root? %>
+  $('.<%= "comment-post-#{@comment.post_id}" %>').prepend(comment_field);
+  $('.<%= "post-form-#{@comment.post_id}" %>').toggle();
+<% else %>
+  $('.<%= "subcomment-comment-#{@comment.parent_id}" %>').append(subcomment_field);
+  $('.<%= "comment-form-#{@comment.parent_id}" %>').toggle();
+<% end %>
+$('.comment_content').val('');
+$('.<%= "post-#{@comment.post_id}" %> .count_comment').html("<%= @post.comments.size %>");

@@ -8,6 +8,7 @@ end
 gem "bootstrap-kaminari-views"
 gem "bootstrap-sass", "3.3.7"
 gem "coffee-rails", "~> 4.2"
+gem "closure_tree"
 gem "config"
 gem "devise"
 gem "figaro"
