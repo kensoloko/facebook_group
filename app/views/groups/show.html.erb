@@ -3,9 +3,11 @@
   <%= image_tag (@group.picture.url), class: "image" %>
 <% end %>
 <%= render "join_form", group: @group %>
-<% if signed_in? && current_user.join?(@group) %>
-  <%= render "shared/post_form", new_post: @support.current_user_posts_build %>
-<% end %>
+<div id="post-form">
+  <% if signed_in? && current_user.join?(@group) %>
+    <%= render "shared/post_form", new_post: @support.current_user_posts_build %>
+  <% end %>
+</div>
 <ol>
   <%= render "post", posts: @posts, group: @group,
     new_comment: @support.init_comment %>

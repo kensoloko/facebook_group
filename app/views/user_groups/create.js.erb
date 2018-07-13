@@ -1,2 +1,3 @@
 $('#join-form').html('<%= j render "groups/leave_group",\
   leave_group: @membership %>');
+$('#post-form').html('<%= j render "shared/post_form", new_post: @support.current_user_posts_build %>');

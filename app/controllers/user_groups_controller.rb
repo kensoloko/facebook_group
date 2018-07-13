@@ -1,5 +1,6 @@
 class UserGroupsController < ApplicationController
   before_action :authenticate_user!
+  before_action :load_view_support, only: %i(create)
 
   def create
     group = Group.find_by id: params[:user_group][:group_id]
@@ -28,5 +29,9 @@ class UserGroupsController < ApplicationController
 
   def user_group_params
     params.require(:user_group).permit UserGroup::ATTRIBUTE_PARAMS
+  end
+
+  def load_view_support
+    @support = Supports::ViewSupport.new current_user: current_user
   end
 end
