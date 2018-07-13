@@ -19,7 +19,7 @@ class Post < ApplicationRecord
     comments.where(parent_id: nil).order created_at: :desc
   end
 
-  def belong_to? current_user
-    self.user_id = current_user.id
+  def belong_to? user
+    self.user_id == user.id
   end
 end
