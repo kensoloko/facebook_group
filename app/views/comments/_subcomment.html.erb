@@ -11,10 +11,12 @@
       <nr>
       <p class="text-right"><%= time_ago_in_words subcomment.created_at %></p>
       <p>
-        <span>
-        <%= link_to t(".reply"), "#", class: "comment-form-reply",
-          data: {id_cm: subcomment.parent_id} %>
-        </span>
+        <% if signed_in? %>
+          <span>
+          <%= link_to t(".reply"), "#", class: "comment-form-reply",
+            data: {id_cm: subcomment.parent_id} %>
+          </span>
+        <% end %>
       </p>
     </div>
   </div>

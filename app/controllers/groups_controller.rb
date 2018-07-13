@@ -26,7 +26,9 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @leave_group = current_user.user_groups.find_by group_id: @group.id
+    if signed_in?
+      @leave_group = current_user.user_groups.find_by group_id: @group.id
+    end
     @posts = @group.order_post_by_time.includes(:user, :comments).
       page(params[:page]).per Settings.post_per_page
   end

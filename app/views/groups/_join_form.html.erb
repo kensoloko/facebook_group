@@ -1,6 +1,6 @@
-<% if current_user.is_group_creator? group %>
+<% if signed_in? && current_user.is_group_creator?(group) %>
   <div id="join-form">
-    <% if current_user.join? group %>
+    <% if signed_in? && current_user.join?(group) %>
       <%= render "leave_group", leave_group: @leave_group %>
     <% else %>
       <%= render "join_group" %>
