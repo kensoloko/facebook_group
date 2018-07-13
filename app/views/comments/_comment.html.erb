@@ -1,5 +1,5 @@
+<!-- Root Comment-->
 <div class="media response-info">
-  <!-- Root Comment-->
   <div class="media-left response-text-left">
     <%= link_to "#" do %>
       <%= image_tag ("sin1.jpg"), class: "media-object", alt: "" %>
@@ -7,7 +7,7 @@
     <h5><%= comment.user.name %></h5>
   </div>
   <div class="media-body response-text-right">
-    <p><%= comment.content %></p>
+    <p class="content-<%= "comment-#{comment.id}" %>"><%= comment.content %></p>
     <p>
       <% if signed_in? %>
       <span>
@@ -15,21 +15,32 @@
           data: {id_cm: comment.id} %>
       </span>|
       <% end %>
+
+      <% if signed_in? && comment.belong_to?(current_user) %>
+      <span>
+        <%= link_to t(".edit"), edit_comment_path(comment), remote: true,
+          class: "comment-form-edit" %>
+      </span>|
+      <% end %>
+
       <span><%= time_ago_in_words comment.created_at %></span>
     </p>
   </div>
 </div>
+<!-- Root Comment-->
+
+<!-- Sub Comment -->
 <div class="media response-info">
-  <!-- Sub Comment -->
   <div class="subcomment-<%= "comment-#{comment.id}" %>">
     <% if comment.children.present? %>
       <%= render partial: "comments/subcomment", collection: comment.children %>
     <% end %>
   </div>
-  <!-- Sub Comment -->
 </div>
+<!-- Sub Comment -->
+
+<!-- form -->
 <div class="media response-info">
-  <!-- form -->
   <% if signed_in? %>
     <div class="form-initial-load comment-form-<%= "#{comment.id}"%>">
       <div class="media-body response-text-right comment-post">
@@ -43,5 +54,18 @@
       </div>
     </div>
   <% end %>
-  <!--form  -->
 </div>
+<!--form  -->
+
+<!-- form -->
+<div class="media response-info">
+  <% if signed_in? && comment.belong_to?(current_user) %>
+    <div class="form-initial-load edit-comment-form-<%= "#{comment.id}"%>">
+      <div class="media-body response-text-right comment-post">
+        <%= render "comments/form", new_comment: comment, post: comment.post,
+          post_id: comment.post.id, parent_id: comment.parent_id %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<!--form  -->
