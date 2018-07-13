@@ -4,6 +4,9 @@
       <div class="media-body">
         <h4 class="media-heading"></h4>
         <p><%= post.content %></p>
+        <% if post.picture? %>
+          <%= image_tag (post.picture.url), class: "post-image" %>
+        <% end %>
         <br>
         <ul class="list-inline list-unstyled">
           <li><span><i class="fa fa-clock-o"></i>
@@ -39,7 +42,7 @@
           <div class="media response-info form-initial-load post-form-<%= "#{post.id}" %>">
             <div class="media-left response-text-left">
               <%= link_to "#" do %>
-                <%= image_tag ("sin1.jpg"), class: "media-object", alt: "" %>
+                <%= gravatar_for current_user %>
               <% end %>
               <h5><%= current_user.name %></h5>
             </div>

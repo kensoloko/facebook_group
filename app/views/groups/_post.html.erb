@@ -1,63 +1,70 @@
 <% posts.each do |post| %>
   <div id="<%= "post-#{post.id}" %>">
-    <div class="well">
-      <div class="media comment-post">
-        <div class="media-body">
-          <h4 class="media-heading"></h4>
-          <p><%= post.content %></p>
-          <br>
-          <ul class="list-inline list-unstyled">
-            <li><span><i class="fa fa-clock-o"></i>
-              <%= time_ago_in_words post.created_at %></span>
-            </li>
-            <li>|</li>
+  <div class="well">
+    <div class="to-group">
+      <%= post.user.name %><i class="glyphicon glyphicon-play"></i>
+      <%= link_to group.name, group %>
+    </div>
+    <div class="media comment-post">
+      <div class="media-body">
+        <h4 class="media-heading"></h4>
+        <p><%= post.content %></p>
+        <% if post.picture? %>
+          <%= image_tag (post.picture.url), class: "post-image" %>
+        <% end %>
+        <br>
+        <ul class="list-inline list-unstyled">
+          <li><span><i class="fa fa-clock-o"></i>
+            <%= time_ago_in_words post.created_at %></span>
+          </li>
+          <li>|</li>
             <span><i class="fa fa-comment"></i>
               <%= t ".comments" %>
               <span class= "count_comment">
                 <%= post.comments.size %>
               </span>
             </span>
-            <li>|</li>
-            <% if signed_in? %>
-              <%= link_to "Reply", "#", class: "post-form-reply",
-                data: {id_post: post.id} %>
-
-              <% if post.belong_to? current_user %>
-              <li>|</li>
-              <%= link_to t(".delete"), post, method: :delete,
-              data: {confirm: t(".sure")}, remote: true %>
-              <% end %>
-            <% end %>
-            <p class="text-right"> <%= t ".by" %> <%= post.user.name %></p>
-          </ul>
-        </div>
-      </div>
-
-      <div class="media comment-post">
-        <h4 class="comment-post"><%= t ".response" %></h4>
-        <div class="comment-<%= "post-#{post.id}" %>-form">
+          <li>|</li>
           <% if signed_in? %>
-            <div class="media response-info form-initial-load post-form-<%= "#{post.id}" %>">
-              <div class="media-left response-text-left">
-                <%= link_to "#" do %>
-                  <%= image_tag ("sin1.jpg"), class: "media-object", alt: "" %>
-                <% end %>
-                <h5><%= current_user.name %></h5>
-              </div>
-              <div class="media-body response-text-right">
-                <%= render "comments/form", post: post, parent_id: nil, new_comment:
-                  new_comment %>
-              </div>
-            </div>
-          <% end %>
+            <%= link_to "Reply", "#", class: "post-form-reply",
+              data: {id_post: post.id} %>
 
-          <% if post.find_comments_root_post %>
-            <%= render partial: "comments/comment", post_id: post.id,
-              collection: post.find_comments_root_post %>
+            <% if post.belong_to? current_user %>
+              <li>|</li>
+                <%= link_to t(".delete"), post, method: :delete,
+                  data: {confirm: t(".sure")}, remote: true %>
+            <% end %>
           <% end %>
-        </div>
-        <div class="comment-<%= "post-#{post.id}" %>"></div>
+          <p class="text-right"> <%= t ".by" %> <%= post.user.name %></p>
+        </ul>
       </div>
     </div>
+
+    <div class="media comment-post">
+      <h4 class="comment-post"><%= t ".response" %></h4>
+      <div class="comment-<%= "post-#{post.id}" %>-form">
+        <% if signed_in? %>
+          <div class="media response-info form-initial-load post-form-<%= "#{post.id}" %>">
+            <div class="media-left response-text-left">
+              <%= link_to "#" do %>
+                <%= image_tag ("sin1.jpg"), class: "media-object", alt: "" %>
+              <% end %>
+              <h5><%= current_user.name %></h5>
+            </div>
+            <div class="media-body response-text-right">
+              <%= render "comments/form", post: post, parent_id: nil, new_comment:
+                new_comment %>
+            </div>
+          </div>
+        <% end %>
+
+        <% if post.find_comments_root_post %>
+          <%= render partial: "comments/comment", post_id: post.id,
+            collection: post.find_comments_root_post %>
+        <% end %>
+      </div>
+      <div class="comment-<%= "post-#{post.id}" %>"></div>
+    </div>
   </div>
+</div>
 <% end %>

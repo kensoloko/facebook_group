@@ -1,5 +1,5 @@
 <h1 class="text-center" ><%= t ".home_page" %></h1>
-<% if signed_in? %>
+<% if user_signed_in? %>
   <%= render "shared/post_form", new_post: @support.current_user_posts_build %>
 <% end %>
   <%= render "shared/feed", items: @items, new_comment: @support.init_comment %>
