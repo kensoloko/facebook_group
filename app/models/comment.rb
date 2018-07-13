@@ -7,4 +7,8 @@ class Comment < ApplicationRecord
   belongs_to :post
 
   validates :content, presence: true
+
+  def belong_to? user
+    self.user_id == user.id
+  end
 end

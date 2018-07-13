@@ -7,17 +7,36 @@
       <span class="timestamp">
         <%= subcomment.user.name %>
       </span><br/>
-      <p><%= subcomment.content %><p>
+      <p class="content-<%= "comment-#{subcomment.id}"%>"><%= subcomment.content %><p>
       <nr>
       <p class="text-right"><%= time_ago_in_words subcomment.created_at %></p>
       <p>
         <% if signed_in? %>
           <span>
-          <%= link_to t(".reply"), "#", class: "comment-form-reply",
-            data: {id_cm: subcomment.parent_id} %>
+            <%= link_to t(".reply"), "#", class: "comment-form-reply",
+              data: {id_cm: subcomment.parent_id} %>
+          </span>|
+        <% end %>
+
+        <% if signed_in? && subcomment.belong_to?(current_user) %>
+          <span>
+            <%= link_to t(".edit"), edit_comment_path(subcomment),
+               remote: true, class: "comment-form-edit" %>
           </span>
         <% end %>
+
       </p>
     </div>
   </div>
 <% end %>
+
+<!-- form -->
+<% if signed_in? && subcomment.belong_to?(current_user) %>
+  <div class="form-initial-load edit-comment-form-<%= "#{subcomment.id}"%>">
+    <div class="media-body response-text-right comment-post">
+      <%= render "comments/form", new_comment: subcomment, post: subcomment.post,
+        post_id: subcomment.post.id, parent_id: subcomment.parent_id %>
+    </div>
+  </div>
+<% end %>
+<!-- form -->

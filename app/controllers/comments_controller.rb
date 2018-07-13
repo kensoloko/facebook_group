@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  before_action :find_comment, only: %i(edit update)
+
   def create
     @comment = if params[:comment][:parent_id].to_i > 0
                 find_comment_parent
@@ -7,14 +9,28 @@ class CommentsController < ApplicationController
               end
 
     if comment.save
-      flash.now[:success] = "Create comment success"
       @post = comment.post
       respond_to do |format|
         format.html{redirect_to :back}
         format.js
       end
     else
-      flash[:danger] = "Create comment failed"
+      flash[:danger] = t ".messages.create_failed"
+      redirect_to root_url
+    end
+  end
+
+  def edit; end
+
+  def update
+    @comment.update_attributes comment_params
+    if comment.save
+      respond_to do |format|
+        format.html{redirect_to :back}
+        format.js
+      end
+    else
+      flash[:danger] = t ".messages.update_failed"
       redirect_to root_url
     end
   end
@@ -32,8 +48,16 @@ class CommentsController < ApplicationController
     if parent.present?
       parent.children.build comment_params
     else
-      flash[:danger] = t ".comments.messages.not found"
-      redirect_to :back
+      flash[:danger] = t ".messages.not_found"
+      redirect_to root_url
     end
+  end
+
+  def find_comment
+    @comment = Comment.find_by id: params[:id]
+
+    return if comment
+    flash[:danger] = t ".messages.not_found"
+    redirect_to root_url
   end
 end

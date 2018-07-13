@@ -2,9 +2,12 @@ en:
   comments:
     messages:
       not_found: "Comment not found"
+      create_failed: "Create Comment failed"
+      update_failed: "Update Comment failed"
     form:
       comment: "Comment"
     comment:
       reply: "Reply"
+      edit: "Edit"
     subcomment:
       reply: "Reply"
