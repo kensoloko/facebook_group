@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :find_comment, only: %i(edit update)
+  before_action :find_comment, only: %i(edit update destroy)
 
   def create
     @comment = if params[:comment][:parent_id].to_i > 0
@@ -31,6 +31,24 @@ class CommentsController < ApplicationController
       end
     else
       flash[:danger] = t ".messages.update_failed"
+      redirect_to root_url
+    end
+  end
+
+  def destroy
+    if @comment.descendants.any?
+      comment.descendants.each do |comment_des|
+        comment_des.destroy
+      end
+    end
+
+    if comment.destroy
+      respond_to do |format|
+        format.html{redirect_to :back}
+        format.js
+      end
+    else
+      flash[:danger] = t ".messages.delete_failed"
       redirect_to root_url
     end
   end

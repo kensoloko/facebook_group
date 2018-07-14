@@ -31,6 +31,11 @@ class User < ApplicationRecord
     self.id != group.creator_id
   end
 
+  def is_post_owner? comment
+    post = Post.find_by id: comment.post_id
+    self.id == post.user_id
+  end
+
   private
 
   def downcase_email

@@ -1,5 +1,5 @@
 <% unless subcomment.new_record? %>
-  <div class="row subcomment">
+  <div class="row subcomment div-comment-<%= "comment-#{subcomment.id}" %> "">
     <div class="col-md-2">
       <%= gravatar_for subcomment.user %>
     </div>
@@ -22,9 +22,15 @@
           <span>
             <%= link_to t(".edit"), edit_comment_path(subcomment),
                remote: true, class: "comment-form-edit" %>
-          </span>
+          </span>|
         <% end %>
 
+        <% if signed_in? && (subcomment.belong_to?(current_user) || current_user.is_post_owner?(subcomment))%>
+          <span>
+            <%= link_to t(".delete"), comment_path(subcomment), method: "delete", remote: true,
+              class: "comment-form-delete" %>
+          </span>|
+        <% end %>
       </p>
     </div>
   </div>
