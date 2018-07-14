@@ -47,7 +47,7 @@
           <div class="media response-info form-initial-load post-form-<%= "#{post.id}" %>">
             <div class="media-left response-text-left">
               <%= link_to "#" do %>
-                <%= image_tag ("sin1.jpg"), class: "media-object", alt: "" %>
+                <%= gravatar_for current_user %>
               <% end %>
               <h5><%= current_user.name %></h5>
             </div>
